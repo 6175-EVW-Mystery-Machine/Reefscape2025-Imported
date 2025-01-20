@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.PS4Controller.Button;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.subsystems.AlgaeSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleClaw;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -36,9 +37,11 @@ public class RobotContainer {
   // The robot's subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
   private final ExampleClaw m_exampleClaw = new ExampleClaw();
+  private final AlgaeSubsystem m_algaeSubsystem = new AlgaeSubsystem();
 
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
+  XboxController m_operatorController = new XboxController(2);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -62,6 +65,10 @@ public class RobotContainer {
     m_exampleClaw.setDefaultCommand(
         new RunCommand(() -> m_exampleClaw.runClaw(0), m_exampleClaw)
     );
+
+    m_algaeSubsystem.setDefaultCommand(
+        new RunCommand(() -> m_algaeSubsystem.stopAlgaeIntake(), m_algaeSubsystem)
+    );
   }
 
   /**
@@ -78,6 +85,9 @@ public class RobotContainer {
         .whileTrue(new RunCommand(
             () -> m_robotDrive.setX(),
             m_robotDrive));
+
+    // ALGAE INTAKE SEQUENCE - BUTTON X (2)
+    new JoystickButton(m_operatorController, 3).whileTrue(new RunCommand(() -> m_algaeSubsystem.algaeIntakeSeq(), m_algaeSubsystem));
   }
 
   /**

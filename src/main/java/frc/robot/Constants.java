@@ -27,6 +27,10 @@ public final class Constants {
 
     public static final int c_exampleClawCAN = 0;
     public static final int c_algaeIntakeCAN = 0;
+    public static final int c_algaeLimitSwitchPort = 1;
+
+    public static final double c_intakeAlgaeSpeed = -0.1;
+    public static final double c_intakeAlgaeStopSpeed = 0;
 
   }
   public static final class DriveConstants {
