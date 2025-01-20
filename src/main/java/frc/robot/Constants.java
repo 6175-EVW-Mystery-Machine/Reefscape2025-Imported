@@ -26,6 +26,7 @@ public final class Constants {
   public static final class MyConstants {
 
     public static final int c_exampleClawCAN = 0;
+    public static final int c_algaeIntakeCAN = 0;
 
   }
   public static final class DriveConstants {
